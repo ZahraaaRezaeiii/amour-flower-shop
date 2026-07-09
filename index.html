@@ -49,35 +49,39 @@
         <div class="footer">✨ با ❤️ برای شما</div>
     </div>
 
-    <script>
-        var path = window.location.pathname;
-        var parts = path.split('/').filter(Boolean);
-        var folderName = parts[parts.length - 1];
+ <script>
+    var path = window.location.pathname;
+    var parts = path.split('/').filter(Boolean);
+    var folderName = parts[parts.length - 1];
 
-        var playerDiv = document.getElementById('player');
-        var statusDiv = document.getElementById('status');
+    var playerDiv = document.getElementById('player');
+    var statusDiv = document.getElementById('status');
 
-        if (folderName && folderName.length >= 5) {
-            var audioUrl = 'sounds/' + folderName + '/music.mp3';
-            var audio = new Audio(audioUrl);
+    if (folderName && folderName.length >= 3) {
+        // مسیر درست رو از روی URL می‌سازیم
+        var baseUrl = path.substring(0, path.lastIndexOf('/'));
+        var audioUrl = baseUrl + '/music.mp3';
 
-            audio.oncanplaythrough = function() {
-                statusDiv.innerHTML = '✅ پیام شما آماده پخش است. لذت ببرید! 🎧';
-                audio.play().catch(function() {
-                    statusDiv.innerHTML = '⚠️ برای پخش، روی دکمه پخش کلیک کنید.';
-                });
-            };
+        var audio = new Audio(audioUrl);
 
-            audio.onerror = function() {
-                statusDiv.innerHTML = '<div class="error">❌ متأسفانه این پیام معتبر نیست. لطفاً با پشتیبانی تماس بگیرید.</div>';
-            };
+        audio.oncanplaythrough = function() {
+            statusDiv.innerHTML = '✅ پیام شما آماده پخش است. لذت ببرید! 🎧';
+            audio.play().catch(function() {
+                statusDiv.innerHTML = '⚠️ برای پخش، روی دکمه پخش کلیک کنید.';
+            });
+        };
 
-            audio.controls = true;
-            audio.style.width = '100%';
-            playerDiv.appendChild(audio);
-        } else {
-            statusDiv.innerHTML = '<div class="error">🔗 لینک نامعتبر است.</div>';
-        }
-    </script>
+        audio.onerror = function() {
+            statusDiv.innerHTML = '<div class="error">❌ متأسفانه این پیام معتبر نیست. لطفاً با پشتیبانی تماس بگیرید.</div>';
+        };
+
+        audio.controls = true;
+        audio.style.width = '100%';
+        playerDiv.appendChild(audio);
+    } else {
+        statusDiv.innerHTML = '<div class="error">🔗 لینک نامعتبر است.</div>';
+    }
+</script>
+
 </body>
 </html>
