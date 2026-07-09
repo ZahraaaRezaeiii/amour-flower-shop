@@ -49,18 +49,21 @@
         <div class="footer">✨ با ❤️ برای شما</div>
     </div>
 
- <script>
-    var path = window.location.pathname;
-    var parts = path.split('/').filter(Boolean);
-    var folderName = parts[parts.length - 1];
+<script>
+    // گرفتن آدرس کامل صفحه
+    var currentPath = window.location.pathname;
+    
+    // پیدا کردن اسم آخرین بخش آدرس (مثلاً zahra)
+    var folderName = currentPath.split('/').filter(Boolean).pop();
 
     var playerDiv = document.getElementById('player');
     var statusDiv = document.getElementById('status');
 
-    if (folderName && folderName.length >= 3) {
-        // مسیر درست رو از روی URL می‌سازیم
-        var baseUrl = path.substring(0, path.lastIndexOf('/'));
-        var audioUrl = baseUrl + '/music.mp3';
+    if (folderName && folderName.length > 0) {
+        // ساختن لینک مستقیم به فایل موزیک
+        // آدرس فعلی: /amour-flower-shop/zahra/
+        // لینک موزیک: /amour-flower-shop/zahra/music.mp3
+        var audioUrl = currentPath + 'music.mp3';
 
         var audio = new Audio(audioUrl);
 
@@ -82,6 +85,7 @@
         statusDiv.innerHTML = '<div class="error">🔗 لینک نامعتبر است.</div>';
     }
 </script>
+
 
 </body>
 </html>
