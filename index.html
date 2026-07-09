@@ -50,58 +50,38 @@
     </div>
 
 <script>
-    var path = window.location.pathname;
+    const params = new URLSearchParams(window.location.search);
+    const folderName = params.get("user");
 
-    // گرفتن اسم آخر مسیر
-    var parts = path.split('/').filter(Boolean);
-    var folderName = parts[parts.length - 1];
+    const playerDiv = document.getElementById("player");
+    const statusDiv = document.getElementById("status");
 
-    // حذف نام پروژه گیت‌هاب
-    if(folderName === "amour-flower-shop"){
-        folderName = null;
-    }
+    if (folderName) {
 
-    var playerDiv = document.getElementById('player');
-    var statusDiv = document.getElementById('status');
+        const audioUrl = `sounds/${folderName}/music.mp3`;
 
-    if(folderName){
-
-        var audioUrl = './sounds/' + folderName + '/music.mp3';
-
-        var audio = new Audio(audioUrl);
-
+        const audio = document.createElement("audio");
+        audio.src = audioUrl;
         audio.controls = true;
+        audio.autoplay = true;
         audio.style.width = "100%";
 
-        audio.oncanplaythrough = function(){
-            statusDiv.innerHTML =
-            "✅ پیام شما آماده پخش است 🎧";
-
-            audio.play().catch(function(){
-                statusDiv.innerHTML =
-                "⚠️ برای پخش روی دکمه Play بزنید";
-            });
+        audio.oncanplay = () => {
+            statusDiv.innerHTML = "✅ پیام شما آماده پخش است 🎧";
         };
 
-
-        audio.onerror = function(){
+        audio.onerror = () => {
             statusDiv.innerHTML =
-            '<div class="error">❌ این پیام وجود ندارد</div>';
+                '<div class="error">❌ فایل صوتی پیدا نشد.</div>';
         };
-
 
         playerDiv.appendChild(audio);
 
-
-    }else{
-
+    } else {
         statusDiv.innerHTML =
-        '<div class="error">🔗 لینک اشتباه است</div>';
-
+            '<div class="error">🔗 لینک نامعتبر است.</div>';
     }
-
 </script>
-
 
 </body>
 </html>
