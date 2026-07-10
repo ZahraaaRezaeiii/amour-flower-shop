@@ -96,16 +96,10 @@
 
 <script>
 
-    // لینک موزیک‌ها از Google Drive
+   
     const musics = {
-
-        zahra:
-"https://drive.google.com/uc?export=download&id=1XCwCptfc7oBiizN-3XYcV8YAP2t_c1ZX",
-
-        mahdis:
-        "https://drive.google.com/uc?export=download&id=ID_MAHDIS"
-
-    };
+    zahra: "https://drive.google.com/uc?export=open&id=1XCwCptfc7oBiizN-3XYcV8YAP2t_c1ZX"
+};
 
 
     const params = new URLSearchParams(window.location.search);
@@ -123,6 +117,8 @@
         const audio = document.createElement("audio");
 
         audio.src = musics[user];
+audio.type = "audio/mpeg";
+audio.load();
 
         audio.controls = true;
 
