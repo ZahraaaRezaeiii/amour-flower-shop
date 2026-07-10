@@ -1,11 +1,18 @@
+```html
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎁 پیام ویژه شما</title>
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -15,6 +22,7 @@
             align-items: center;
             padding: 20px;
         }
+
         .card {
             background: white;
             padding: 40px 30px;
@@ -24,10 +32,29 @@
             width: 100%;
             text-align: center;
         }
-        h1 { font-size: 28px; color: #333; margin-bottom: 10px; }
-        .subtitle { color: #666; margin-bottom: 25px; font-size: 16px; }
-        .icon { font-size: 60px; margin-bottom: 15px; }
-        audio { width: 100%; margin-top: 20px; border-radius: 30px; }
+
+        h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+
+        .icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 20px;
+        }
+
         .error {
             color: #e74c3c;
             background: #fde8e8;
@@ -35,53 +62,104 @@
             border-radius: 10px;
             margin-top: 20px;
         }
-        .loading { color: #888; margin-top: 20px; }
-        .footer { margin-top: 30px; font-size: 12px; color: #aaa; }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #aaa;
+        }
     </style>
 </head>
+
 <body>
-    <div class="card">
-        <div class="icon">🎁</div>
-        <h1>این پیام مخصوص شماست</h1>
-        <p class="subtitle">لطفاً چند لحظه صبر کنید...</p>
-        <div id="player"></div>
-        <div id="status"></div>
-        <div class="footer">✨ با ❤️ برای شما</div>
+
+<div class="card">
+
+    <div class="icon">🎁</div>
+
+    <h1>این پیام مخصوص شماست</h1>
+
+    <p class="subtitle">
+        لطفاً چند لحظه صبر کنید...
+    </p>
+
+    <div id="player"></div>
+
+    <div id="status"></div>
+
+    <div class="footer">
+        ✨ با ❤️ برای شما
     </div>
 
+</div>
+
+
 <script>
+
+    // لینک موزیک‌ها از Google Drive
+    const musics = {
+
+        zahra:
+"https://drive.google.com/uc?export=download&id=1XCwCptfc7oBiizN-3XYcV8YAP2t_c1ZX",
+
+        mahdis:
+        "https://drive.google.com/uc?export=download&id=ID_MAHDIS"
+
+    };
+
+
     const params = new URLSearchParams(window.location.search);
-    const folderName = params.get("user");
+
+    const user = params.get("user");
 
     const playerDiv = document.getElementById("player");
+
     const statusDiv = document.getElementById("status");
 
-    if (folderName) {
 
-        const audioUrl = `sounds/${folderName}/music.mp3`;
+    if (user && musics[user]) {
+
 
         const audio = document.createElement("audio");
-        audio.src = audioUrl;
+
+        audio.src = musics[user];
+
         audio.controls = true;
+
         audio.autoplay = true;
-        audio.style.width = "100%";
 
-        audio.oncanplay = () => {
-            statusDiv.innerHTML = "✅ پیام شما آماده پخش است 🎧";
-        };
 
-        audio.onerror = () => {
+        audio.oncanplay = function() {
+
             statusDiv.innerHTML =
-                '<div class="error">❌ فایل صوتی پیدا نشد.</div>';
+            "✅ پیام شما آماده پخش است 🎧";
+
         };
+
+
+        audio.onerror = function() {
+
+            statusDiv.innerHTML =
+            '<div class="error">❌ فایل صوتی پیدا نشد.</div>';
+
+        };
+
 
         playerDiv.appendChild(audio);
 
+
     } else {
+
+
         statusDiv.innerHTML =
-            '<div class="error">🔗 لینک نامعتبر است.</div>';
+        '<div class="error">🔗 لینک نامعتبر است.</div>';
+
+
     }
+
+
 </script>
+
 
 </body>
 </html>
