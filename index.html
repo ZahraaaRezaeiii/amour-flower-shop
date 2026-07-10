@@ -51,37 +51,55 @@
 
 <script>
     var path = window.location.pathname;
+
+    // گرفتن اسم آخر مسیر
     var parts = path.split('/').filter(Boolean);
     var folderName = parts[parts.length - 1];
+
+    // حذف نام پروژه گیت‌هاب
+    if(folderName === "amour-flower-shop"){
+        folderName = null;
+    }
 
     var playerDiv = document.getElementById('player');
     var statusDiv = document.getElementById('status');
 
-    if (folderName && folderName.length >= 5) {
+    if(folderName){
 
         var audioUrl = './sounds/' + folderName + '/music.mp3';
 
         var audio = new Audio(audioUrl);
+
         audio.controls = true;
-        audio.style.width = '100%';
+        audio.style.width = "100%";
 
-        audio.oncanplaythrough = function() {
-            statusDiv.innerHTML = '✅ پیام شما آماده پخش است. لذت ببرید! 🎧';
+        audio.oncanplaythrough = function(){
+            statusDiv.innerHTML =
+            "✅ پیام شما آماده پخش است 🎧";
 
-            audio.play().catch(function() {
-                statusDiv.innerHTML = '⚠️ برای پخش، روی دکمه پخش کلیک کنید.';
+            audio.play().catch(function(){
+                statusDiv.innerHTML =
+                "⚠️ برای پخش روی دکمه Play بزنید";
             });
         };
 
-        audio.onerror = function() {
-            statusDiv.innerHTML = '<div class="error">❌ فایل موزیک پیدا نشد.</div>';
+
+        audio.onerror = function(){
+            statusDiv.innerHTML =
+            '<div class="error">❌ این پیام وجود ندارد</div>';
         };
+
 
         playerDiv.appendChild(audio);
 
-    } else {
-        statusDiv.innerHTML = '<div class="error">🔗 لینک نامعتبر است.</div>';
+
+    }else{
+
+        statusDiv.innerHTML =
+        '<div class="error">🔗 لینک اشتباه است</div>';
+
     }
+
 </script>
 
 
