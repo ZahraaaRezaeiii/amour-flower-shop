@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🎁 پیام ویژه شما</title>
+<title>🌸 گل فروشی آمور | پیام شما</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;500;700;900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -13,53 +15,164 @@
 }
 
 body {
-    font-family: Tahoma, sans-serif;
-    background: linear-gradient(135deg,#667eea,#764ba2);
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
+    font-family: 'Vazirmatn', Tahoma, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(145deg, #fce4ec 0%, #f8bbd0 50%, #f48fb1 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* گل‌های تزئینی پس‌زمینه */
+body::before {
+    content: '🌸🌷🌹🌺🌻🌼';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 40px;
+    opacity: 0.15;
+    letter-spacing: 30px;
+    white-space: nowrap;
+}
+
+body::after {
+    content: '🌷🌹🌺🌻🌼🌸';
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 40px;
+    opacity: 0.15;
+    letter-spacing: 30px;
+    white-space: nowrap;
 }
 
 .card {
-    background:white;
-    padding:40px 30px;
-    border-radius:20px;
-    box-shadow:0 20px 60px rgba(0,0,0,.3);
-    max-width:450px;
-    width:100%;
-    text-align:center;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    padding: 45px 35px;
+    border-radius: 30px;
+    box-shadow: 
+        0 25px 80px rgba(233, 30, 99, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* روبان بالای کارت */
+.card::before {
+    content: '💐';
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 50px;
+    filter: drop-shadow(0 5px 15px rgba(233, 30, 99, 0.3));
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
 }
 
 .icon {
-    font-size:60px;
-    margin-bottom:15px;
+    font-size: 70px;
+    margin-bottom: 10px;
+    display: block;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
 }
 
 h1 {
-    font-size:28px;
-    color:#333;
-    margin-bottom:10px;
+    font-size: 26px;
+    font-weight: 900;
+    color: #880e4f;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
 }
 
 .subtitle {
-    color:#666;
-    margin-bottom:25px;
+    color: #ad1457;
+    font-weight: 300;
+    margin-bottom: 25px;
+    font-size: 15px;
+    opacity: 0.8;
+}
+
+/* استایل پلیر */
+#player iframe {
+    border-radius: 15px !important;
+    box-shadow: 0 8px 30px rgba(233, 30, 99, 0.15);
+    margin-top: 10px;
+}
+
+#status {
+    margin-top: 20px;
+    padding: 12px 20px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+    color: #880e4f;
+    font-weight: 500;
+    font-size: 14px;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.1);
 }
 
 #error {
-    color:#e74c3c;
-    background:#fde8e8;
-    padding:15px;
-    border-radius:10px;
-    margin-top:20px;
+    color: #c62828;
+    background: linear-gradient(135deg, #ffebee, #ffcdd2);
+    padding: 15px 25px;
+    border-radius: 50px;
+    margin-top: 20px;
+    font-weight: 500;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(198, 40, 40, 0.1);
 }
 
 .footer {
-    margin-top:30px;
-    color:#aaa;
-    font-size:12px;
+    margin-top: 30px;
+    color: #ad1457;
+    font-size: 13px;
+    font-weight: 300;
+    opacity: 0.6;
+    letter-spacing: 1px;
+}
+
+/* خط جداکننده ظریف */
+.divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #e91e63, transparent);
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
+/* ریسپانسیو */
+@media (max-width: 480px) {
+    .card {
+        padding: 35px 20px;
+    }
+    
+    h1 {
+        font-size: 22px;
+    }
+    
+    .icon {
+        font-size: 55px;
+    }
 }
 </style>
 
@@ -69,64 +182,48 @@ h1 {
 
 <div class="card">
 
-<div class="icon">🎁</div>
+<span class="icon">🎁</span>
 
-<h1>این پیام مخصوص شماست</h1>
+<h1>گل فروشی آمور</h1>
+<p class="subtitle">این پیام مخصوص شماست 💌</p>
 
-<p class="subtitle">
-لطفاً چند لحظه صبر کنید...
-</p>
+<div class="divider"></div>
 
 <div id="player"></div>
-
 <div id="status"></div>
 
+<div class="divider"></div>
+
 <div class="footer">
-✨ با ❤️ برای شما
+✨ با عشق، برای تو 🌷
 </div>
 
 </div>
-
 
 <script>
-
-// موزیک‌ها از Google Drive
 const musics = {
-    zahra:
-    "https://drive.google.com/file/d/1XCwCptfc7oBiizN-3XYcV8YAP2t_c1ZX/preview",
-
-    mahdis:
-    "https://drive.google.com/uc?export=download&id=آیدی_فایل_مهدیس"
+    zahra: "https://drive.google.com/file/d/1XCwCptfc7oBiizN-3XYcV8YAP2t_c1ZX/preview",
+    mahdis: "https://drive.google.com/uc?export=download&id=آیدی_فایل_مهدیس"
 };
 
-
 const params = new URLSearchParams(window.location.search);
-
 const user = params.get("user");
-
 const playerDiv = document.getElementById("player");
-
 const statusDiv = document.getElementById("status");
 
-
 if (user && musics[user]) {
-
     const iframe = document.createElement("iframe");
     iframe.src = musics[user];
     iframe.width = "100%";
     iframe.height = "80";
     iframe.style.border = "none";
+    iframe.style.borderRadius = "15px";
     iframe.allow = "autoplay";
-
     playerDiv.appendChild(iframe);
-
     statusDiv.innerHTML = "✅ پیام شما آماده پخش است 🎧";
+} else {
+    statusDiv.innerHTML = '<div id="error">🔗 لینک نامعتبر است</div>';
 }
-else {
-    statusDiv.innerHTML =
-    '<div id="error">🔗 لینک نامعتبر است.</div>';
-}
-
 </script>
 
 </body>
