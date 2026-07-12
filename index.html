@@ -23,6 +23,7 @@
             box-shadow: 0 0 40px rgba(255, 105, 180, 0.15);
             text-align: center;
             border: 1px solid #333;
+            max-width: 90%;
         }
 
         h1 {
@@ -52,32 +53,54 @@
             font-size: 12px;
             margin-top: 15px;
         }
+
+        .error {
+            color: #ff4d4d;
+            font-size: 14px;
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="player">
         <h1>Amour Flower Shop</h1>
         <audio id="audioPlayer" controls></audio>
-        <p class="hint">برای پخش، یک بار روی صفحه کلیک کنید</p>
+        <p id="statusHint" class="hint">برای پخش، یک بار روی صفحه کلیک کنید</p>
+        <p id="errorMessage" class="error">آیدی فایل یافت نشد! لطفmente آدرس را بررسی کنید.</p>
     </div>
 
     <script>
         const params = new URLSearchParams(window.location.search);
         const audio = document.getElementById('audioPlayer');
+        const statusHint = document.getElementById('statusHint');
+        const errorMessage = document.getElementById('errorMessage');
 
-        // حالت بهتر: فقط id فایل را بگیر و لینک را خودت بساز
         const fileId = params.get('id');
         const directUrl = params.get('m');
 
         if (fileId) {
+            // ساخت لینک مستقیم با استفاده از ID
             audio.src = `https://docs.google.com/uc?export=download&id=${fileId}`;
+            
+            // هندل کردن خطای عدم دسترسی (اگر فایل Private باشد)
+            audio.onerror = () => {
+                statusHint.style.display = 'none';
+                errorMessage.textContent = "خطا در بارگذاری فایل. مطمئن شوید دسترسی فایل در گوگل درایو روی Anyone with the link است.";
+                errorMessage.style.display = 'block';
+            };
         } else if (directUrl) {
+            // استفاده از لینک مستقیم مستقیم
             audio.src = directUrl;
+        } else {
+            // اگر هیچ پارامتری نبود
+            statusHint.style.display = 'none';
+            errorMessage.style.display = 'block';
         }
 
+        // پخش خودکار پس از اولین کلیک کاربر (اجباری توسط مرورگرها)
         document.addEventListener('click', () => {
-            if (audio.paused && audio.src) {
-                audio.play().catch(() => {});
+            if (audio.src && audio.paused) {
+                audio.play().catch(e => console.error("Playback failed:", e));
             }
         }, { once: true });
     </script>
