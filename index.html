@@ -1,248 +1,82 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌸 گل فروشی آمور | پیام شما</title>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;500;700;900&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Vazirmatn', Tahoma, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background: linear-gradient(145deg, #fce4ec 0%, #f8bbd0 50%, #f48fb1 100%);
-    position: relative;
-    overflow: hidden;
-}
-
-body::before {
-    content: '🌸🌷🌹🌺🌻🌼';
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 40px;
-    opacity: 0.15;
-    letter-spacing: 30px;
-    white-space: nowrap;
-}
-
-body::after {
-    content: '🌷🌹🌺🌻🌼🌸';
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 40px;
-    opacity: 0.15;
-    letter-spacing: 30px;
-    white-space: nowrap;
-}
-
-.card {
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(20px);
-    padding: 45px 35px;
-    border-radius: 30px;
-    box-shadow: 
-        0 25px 80px rgba(233, 30, 99, 0.2),
-        0 0 0 1px rgba(255, 255, 255, 0.5) inset;
-    max-width: 450px;
-    width: 100%;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-}
-
-.card::before {
-    content: '💐';
-    position: absolute;
-    top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 50px;
-    filter: drop-shadow(0 5px 15px rgba(233, 30, 99, 0.3));
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-8px); }
-}
-
-.icon {
-    font-size: 70px;
-    margin-bottom: 10px;
-    display: block;
-    animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
-
-h1 {
-    font-size: 26px;
-    font-weight: 900;
-    color: #880e4f;
-    margin-bottom: 8px;
-    letter-spacing: 1px;
-}
-
-.subtitle {
-    color: #ad1457;
-    font-weight: 300;
-    margin-bottom: 25px;
-    font-size: 15px;
-    opacity: 0.8;
-}
-
-.custom-player {
-    background: linear-gradient(135deg, #fce4ec, #f8bbd0);
-    border-radius: 20px;
-    padding: 20px;
-    margin-top: 10px;
-    box-shadow: 0 8px 30px rgba(233, 30, 99, 0.15);
-}
-
-.custom-player audio {
-    width: 100%;
-    outline: none;
-    border-radius: 30px;
-}
-
-.custom-player audio::-webkit-media-controls-panel {
-    background: linear-gradient(135deg, #fce4ec, #f8bbd0);
-}
-
-.custom-player audio::-webkit-media-controls-current-time-display,
-.custom-player audio::-webkit-media-controls-time-remaining-display {
-    color: #880e4f;
-    font-weight: 500;
-}
-
-#status {
-    margin-top: 20px;
-    padding: 12px 20px;
-    border-radius: 50px;
-    background: linear-gradient(135deg, #fce4ec, #f8bbd0);
-    color: #880e4f;
-    font-weight: 500;
-    font-size: 14px;
-    display: inline-block;
-    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.1);
-}
-
-#error {
-    color: #c62828;
-    background: linear-gradient(135deg, #ffebee, #ffcdd2);
-    padding: 15px 25px;
-    border-radius: 50px;
-    margin-top: 20px;
-    font-weight: 500;
-    display: inline-block;
-    box-shadow: 0 4px 15px rgba(198, 40, 40, 0.1);
-}
-
-.footer {
-    margin-top: 30px;
-    color: #ad1457;
-    font-size: 13px;
-    font-weight: 300;
-    opacity: 0.6;
-    letter-spacing: 1px;
-}
-
-.divider {
-    width: 60px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #e91e63, transparent);
-    margin: 20px auto;
-    border-radius: 10px;
-}
-
-@media (max-width: 480px) {
-    .card {
-        padding: 35px 20px;
-    }
-    
-    h1 {
-        font-size: 22px;
-    }
-    
-    .icon {
-        font-size: 55px;
-    }
-}
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amour Flower Shop</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0d0d0d;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+        .player {
+            background: #1a1a1a;
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(255, 105, 180, 0.15);
+            text-align: center;
+            border: 1px solid #333;
+        }
+        h1 {
+            color: #ff69b4;
+            font-size: 24px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        audio {
+            width: 300px;
+            outline: none;
+            border-radius: 30px;
+        }
+        audio::-webkit-media-controls-panel {
+            background: #2a2a2a;
+        }
+        audio::-webkit-media-controls-current-time-display,
+        audio::-webkit-media-controls-time-remaining-display {
+            color: #fff;
+        }
+        .hint {
+            color: #666;
+            font-size: 12px;
+            margin-top: 15px;
+        }
+    </style>
 </head>
-
 <body>
+    <div class="player">
+        <h1>🌸 Amour Flower Shop</h1>
+        <audio id="audioPlayer" controls></audio>
+        <p class="hint">🎵 پخش خودکار با کلیک روی صفحه</p>
+    </div>
 
-<div class="card">
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const m = urlParams.get('m');
+        
+        if (m) {
+            // تلاش برای باز کردن لینک کوتاه شده
+            fetch(m, { method: 'HEAD', redirect: 'follow' })
+                .then(res => {
+                    document.getElementById('audioPlayer').src = res.url;
+                })
+                .catch(() => {
+                    // اگه نشد مستقیم از همون لینک استفاده کن
+                    document.getElementById('audioPlayer').src = m;
+                });
+        }
 
-<span class="icon">🎁</span>
-
-<h1>گل فروشی آمور</h1>
-<p class="subtitle">این پیام مخصوص شماست 💌</p>
-
-<div class="divider"></div>
-
-<div id="player"></div>
-<div id="status"></div>
-
-<div class="divider"></div>
-
-<div class="footer">
-✨ با عشق، برای تو 🌷
-</div>
-
-</div>
-
-<script>
-// لینک‌ها رو از URL می‌گیریم
-const params = new URLSearchParams(window.location.search);
-const musicLink = params.get("m");
-const playerDiv = document.getElementById("player");
-const statusDiv = document.getElementById("status");
-
-if (musicLink) {
-    const container = document.createElement("div");
-    container.className = "custom-player";
-    
-    const audio = document.createElement("audio");
-    audio.controls = true;
-    audio.src = musicLink;
-    audio.style.width = "100%";
-    
-    audio.addEventListener("canplay", function() {
-        statusDiv.innerHTML = "✅ پیام شما آماده پخش است 🎧";
-    });
-    
-    audio.addEventListener("error", function() {
-        statusDiv.innerHTML = '<div id="error">❌ فایل صوتی پیدا نشد</div>';
-    });
-    
-    container.appendChild(audio);
-    playerDiv.appendChild(container);
-} else {
-    statusDiv.innerHTML = '<div id="error">🔗 لینک نامعتبر است</div>';
-}
-</script>
-
+        // پخش خودکار با کلیک
+        document.addEventListener('click', () => {
+            const audio = document.getElementById('audioPlayer');
+            if (audio.paused && audio.src) {
+                audio.play().catch(() => {});
+            }
+        });
+    </script>
 </body>
 </html>
