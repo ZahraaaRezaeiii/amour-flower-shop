@@ -110,7 +110,6 @@ h1 {
     opacity: 0.8;
 }
 
-/* استایل پلیر اختصاصی */
 .custom-player {
     background: linear-gradient(135deg, #fce4ec, #f8bbd0);
     border-radius: 20px;
@@ -125,7 +124,6 @@ h1 {
     border-radius: 30px;
 }
 
-/* استایل audio tag برای مرورگرهای مختلف */
 .custom-player audio::-webkit-media-controls-panel {
     background: linear-gradient(135deg, #fce4ec, #f8bbd0);
 }
@@ -216,25 +214,19 @@ h1 {
 </div>
 
 <script>
-// لینک‌های دانلود مستقیم گوگل درایو
-const musics = {
-    zahra: "https://drive.google.com/uc?export=download&id=1XCwCptfc7oBiizN-3XYcV8YAP2t_c1ZX",
-    mahdis: "https://drive.google.com/uc?export=download&id=آیدی_فایل_مهدیس"
-};
-
+// لینک‌ها رو از URL می‌گیریم
 const params = new URLSearchParams(window.location.search);
-const user = params.get("user");
+const musicLink = params.get("m");
 const playerDiv = document.getElementById("player");
 const statusDiv = document.getElementById("status");
 
-if (user && musics[user]) {
-    // ساختن کانتینر اختصاصی
+if (musicLink) {
     const container = document.createElement("div");
     container.className = "custom-player";
     
     const audio = document.createElement("audio");
     audio.controls = true;
-    audio.src = musics[user];
+    audio.src = musicLink;
     audio.style.width = "100%";
     
     audio.addEventListener("canplay", function() {
