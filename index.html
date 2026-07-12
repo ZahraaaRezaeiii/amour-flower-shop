@@ -6,77 +6,39 @@
     <title>Amour Flower Shop</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background: #0d0d0d;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-        }
-        .player {
-            background: #1a1a1a;
-            padding: 30px 40px;
-            border-radius: 20px;
-            box-shadow: 0 0 40px rgba(255, 105, 180, 0.15);
-            text-align: center;
-            border: 1px solid #333;
-        }
-        h1 {
-            color: #ff69b4;
-            font-size: 24px;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-        audio {
-            width: 300px;
-            outline: none;
-            border-radius: 30px;
-        }
-        audio::-webkit-media-controls-panel {
-            background: #2a2a2a;
-        }
-        audio::-webkit-media-controls-current-time-display,
-        audio::-webkit-media-controls-time-remaining-display {
-            color: #fff;
-        }
-        .hint {
-            color: #666;
-            font-size: 12px;
-            margin-top: 15px;
-        }
+        body { background: #0d0d0d; min-height: 100vh; display: flex; align-items: center; justify-content: center; font-family: 'Segoe UI', sans-serif; }
+        .player { background: #1a1a1a; padding: 30px 40px; border-radius: 20px; box-shadow: 0 0 40px rgba(255, 105, 180, 0.15); text-align: center; border: 1px solid #333; }
+        h1 { color: #ff69b4; font-size: 24px; margin-bottom: 20px; }
+        audio { width: 300px; outline: none; border-radius: 30px; }
     </style>
 </head>
 <body>
     <div class="player">
         <h1>🌸 Amour Flower Shop</h1>
         <audio id="audioPlayer" controls></audio>
-        <p class="hint">🎵 پخش خودکار با کلیک روی صفحه</p>
+        <p style="color:#666; font-size: 12px; margin-top: 15px;">🎵 در صورت پخش نشدن، فایل را در گیت‌هاب آپلود کنید</p>
     </div>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const m = urlParams.get('m');
+        let m = urlParams.get('m');
+        const audio = document.getElementById('audioPlayer');
         
-        if (m) {
-            // تلاش برای باز کردن لینک کوتاه شده
-            fetch(m, { method: 'HEAD', redirect: 'follow' })
-                .then(res => {
-                    document.getElementById('audioPlayer').src = res.url;
-                })
-                .catch(() => {
-                    // اگه نشد مستقیم از همون لینک استفاده کن
-                    document.getElementById('audioPlayer').src = m;
-                });
+        // اگر کاربر لینک درایو گوگل را وارد کرد، آن را به لینک مستقیم تبدیل کن
+        if (m && m.includes('drive.google.com')) {
+            const fileId = m.split('/d/')[1].split('/')[0];
+            m = `https://docs.google.com/uc?export=download&id=${fileId}`;
         }
 
-        // پخش خودکار با کلیک
+        if (m) {
+            audio.src = m;
+        }
+
         document.addEventListener('click', () => {
-            const audio = document.getElementById('audioPlayer');
             if (audio.paused && audio.src) {
-                audio.play().catch(() => {});
+                audio.play().catch(e => console.log("خطا در پخش خودکار:", e));
             }
-        });
+        }, { once: true });
     </script>
 </body>
 </html>
