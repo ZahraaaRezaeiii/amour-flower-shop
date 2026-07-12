@@ -48,12 +48,7 @@ h1 {
     margin-bottom:25px;
 }
 
-audio {
-    width:100%;
-    margin-top:20px;
-}
-
-.error {
+#error {
     color:#e74c3c;
     background:#fde8e8;
     padding:15px;
@@ -97,13 +92,11 @@ audio {
 
 // موزیک‌ها از Google Drive
 const musics = {
-
     zahra:
-    "https://drive.google.com/uc?export=download&id=1XCwCptfc7oBiizN-3XYcV8YAP2t_c1ZX",
+    "https://drive.google.com/file/d/1XCwCptfc7oBiizN-3XYcV8YAP2t_c1ZX/preview",
 
     mahdis:
-    "https://drive.google.com/uc?export=download&id=آیدی_فایل_گوگل_درایو_مهدیس_را_اینجا_بگذار"
-
+    "https://drive.google.com/uc?export=download&id=آیدی_فایل_مهدیس"
 };
 
 
@@ -118,47 +111,23 @@ const statusDiv = document.getElementById("status");
 
 if (user && musics[user]) {
 
+    const iframe = document.createElement("iframe");
+    iframe.src = musics[user];
+    iframe.width = "100%";
+    iframe.height = "80";
+    iframe.style.border = "none";
+    iframe.allow = "autoplay";
 
-    const audio = document.createElement("audio");
+    playerDiv.appendChild(iframe);
 
-    audio.controls = true;
-
-    audio.src = musics[user];
-
-    audio.type = "audio/mpeg";
-
-
-    audio.addEventListener("canplay", function(){
-
-        statusDiv.innerHTML =
-        "✅ پیام شما آماده پخش است 🎧";
-
-    });
-
-
-    audio.addEventListener("error", function(){
-
-        statusDiv.innerHTML =
-        '<div class="error">❌ فایل صوتی پیدا نشد.</div>';
-
-    });
-
-
-    playerDiv.appendChild(audio);
-
-
+    statusDiv.innerHTML = "✅ پیام شما آماده پخش است 🎧";
 }
 else {
-
-
     statusDiv.innerHTML =
-    '<div class="error">🔗 لینک نامعتبر است.</div>';
-
-
+    '<div id="error">🔗 لینک نامعتبر است.</div>';
 }
 
 </script>
-
 
 </body>
 </html>
